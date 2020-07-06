@@ -11,26 +11,30 @@ async def on_ready():
 async def on_message(message):
 
     async def hello():
-        await message.channel.send('Hello!')
+        await message.channel.send('Hello!', tts = True)
     async def motivate():
         if message.mention_everyone :
             for i in message.guild.members :
-                await message.channel.send('You can do it <@' + str(i.id)  + '>!') 
+                await message.channel.send('You can do it <@' + str(i.id)  + '>!', tts = True) 
             return
             
         hold = regex.findall(r'(?<=\<\@\!)(.*?)(?=\>)', message.content)
         for i in hold :
-            await message.channel.send('You can do it <@' + i  + '>!')
+            await message.channel.send('You can do it <@' + i  + '>!', tts = True)
+#    async def play():
+#    hold = regex.findall(r'(?<=\<\@\!)(.*?)(?=\>)', message.content)
+    #insert new row into database containing user ids
+    #generate new group id number if have not played together before 
 
-    switcher = {
+    commands = {
             '$hello' : hello,
             '$motivate' : motivate,
             }
 
     if message.author == client.user:
         return
-    if message.content.split(' ', 1)[0] in switcher.keys() :
-        await switcher[message.content.split(' ', 1)[0]]()
+    if message.content.split(' ', 1)[0] in commands.keys() :
+        await commands[message.content.split(' ', 1)[0]]()
 
 
 

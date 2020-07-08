@@ -18,6 +18,7 @@ def role_emoji():
 def role_embed():
     init_roles = discord.Embed( colour = discord.Colour.teal())
     init_roles.add_field(name = 'Roles', value = 'React to assign your role')
+    init_roles.add_field(name = 'Message for Carl the Turtle: ', value = 'panget mo <3')
     return init_roles
 
 
@@ -27,11 +28,15 @@ async def hello(message_obj):
     await message_obj.channel.send('Hello!',)
 
 async def motivate(message_obj):
-    role_ids = message_obj.role_mentions
+    if message_obj.mention_everyone :
+        for i in message_obj.guild.members :
+            await message_obj.channel.send('You can do it <@' + str(i.id)  + '>!')
+        return
+
+    role_ids = message_obj.raw_role_mentions
     for i in role_ids:
-        for j in message_obj.get_role(i):
-            for k in j.members:
-                await message_obj.channel.send('You can do it <@' + k.id  + '>!')
+        for k in message_obj.guild.get_role(i).members:
+            await message_obj.channel.send('You can do it <@' + str(k.id) + '>!')
         
     hold = message_obj.raw_mentions
     for i in hold :

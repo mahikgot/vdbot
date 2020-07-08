@@ -35,7 +35,7 @@ async def motivate(message_obj):
         
     hold = message_obj.raw_mentions
     for i in hold :
-        await message_obj.channel.send('You can do it <@' + i  + '>!')
+        await message_obj.channel.send('You can do it <@' + str(i)  + '>!')
 
 async def react(message_obj):
     role_emojei = role_emoji()

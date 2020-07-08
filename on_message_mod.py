@@ -27,11 +27,10 @@ async def hello(message_obj):
     await message_obj.channel.send('Hello!',)
 
 async def motivate(message_obj):
-    role_ids = message_obj.role_mentions
-    for i in role_ids:
-        for j in message_obj.get_role(i):
-            for k in j.members:
-                await message_obj.channel.send('You can do it <@' + k.id  + '>!')
+    role = message_obj.role_mentions
+    for i in role:
+        for j in i.members:
+            await message_obj.channel.send('You can do it <@' + j.id  + '>!')
         
     hold = message_obj.raw_mentions
     for i in hold :

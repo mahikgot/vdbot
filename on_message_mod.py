@@ -20,19 +20,20 @@ def role_embed():
     init_roles.add_field(name = 'Roles', value = 'React to assign your role')
     return init_roles
 
-def get_mention_id(text) :
-   return regex.findall(r'(?<=\<\@\!)(.*?)(?=\>)', text)
+
+   
 
 async def hello(message_obj):
     await message_obj.channel.send('Hello!',)
 
 async def motivate(message_obj):
-    if message_obj.mention_everyone :
-        for i in message_obj.guild.members :
-            await message_obj.channel.send('You can do it <@' + str(i.id)  + '>!') 
-        return
+    role_ids = message_obj.role_mentions
+    for i in role_ids:
+        for j in message_obj.get_role(i):
+            for k in j.members:
+                await message_obj.channel.send('You can do it <@' + k.id  + '>!')
         
-    hold = get_mention_id(message_obj.content)
+    hold = message_obj.raw_mentions
     for i in hold :
         await message_obj.channel.send('You can do it <@' + i  + '>!')
 

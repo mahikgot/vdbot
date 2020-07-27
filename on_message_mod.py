@@ -28,19 +28,21 @@ async def hello(message_obj):
     await message_obj.channel.send('Hello!',)
 
 async def motivate(message_obj):
-    if message_obj.mention_everyone :
-        for i in message_obj.guild.members :
-            await message_obj.channel.send('You can do it <@' + str(i.id)  + '>!')
-        return
-
     role_ids = message_obj.raw_role_mentions
     for i in role_ids:
         for k in message_obj.guild.get_role(i).members:
-            await message_obj.channel.send('You can do it <@' + str(k.id) + '>!')
+            if (k.id == 465500619201839107):
+                await message_obj.channel.send('Bobo ka <@' + str(k.id) + '>!')
+            else:
+                await message_obj.channel.send('You can do it <@' + str(k.id) + '>!')
         
     hold = message_obj.raw_mentions
     for i in hold :
-        await message_obj.channel.send('You can do it <@' + str(i)  + '>!')
+        if (i == 465500619201839107):
+            await message_obj.channel.send('Bobo ka <@' + str(i) + '>!')
+        else:
+            await message_obj.channel.send('You can do it <@' + str(i) + '>!')
+ 
 
 async def react(message_obj):
     role_emojei = role_emoji()

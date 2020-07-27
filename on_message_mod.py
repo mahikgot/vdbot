@@ -1,4 +1,3 @@
-import regex
 import discord
 def role_emoji():
     role_emojie = {
@@ -59,5 +58,5 @@ async def roles(message_obj) :
         message = await message_obj.channel.send(embed = init_roles)
         await react(message)
         return message.id
-   
+      
 

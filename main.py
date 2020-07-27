@@ -37,7 +37,6 @@ class Vbot(discord.Client):
             return
         if message.content.split(' ', 1)[0] == "$roles":
             with open('roles_message_id.txt', 'w') as f:
-                f.write('0')
                 f.write(str(await on_message_mod.roles(message)))
             with open('roles_message_id.txt', 'r') as f:
                 self.roles_message_id = int(f.read())

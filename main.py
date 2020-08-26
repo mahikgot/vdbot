@@ -41,6 +41,6 @@ class Vbot(discord.Client):
             with open('roles_message_id.txt', 'r') as f:
                 self.roles_message_id = int(f.read())
 bot = Vbot()
-bot.run('NzI5Njg0OTI4MTk0Njc0NzU5.XwMiCw.KobwVe5wxj5H3EPuaC32QonsfOw')
+bot.run('SECRET')
 
 

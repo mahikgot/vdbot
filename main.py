@@ -16,7 +16,6 @@ class Vbot(discord.Client):
 
     async def on_raw_reaction_add(self, payload):
         if payload.message_id == self.roles_message_id:
-            
             role_name = on_message_mod.role_emoji()[payload.emoji.name]
             guild_roles = payload.member.guild.roles
             
@@ -26,7 +25,6 @@ class Vbot(discord.Client):
 
     async def on_raw_reaction_remove(self, payload):
         if payload.message_id == self.roles_message_id:
-            
             role_name = on_message_mod.role_emoji()[payload.emoji.name]
             user_id = payload.user_id
             guild = self.get_guild(payload.guild_id)
@@ -45,6 +43,7 @@ class Vbot(discord.Client):
         if message.content.split(' ', 1)[0] == "$roles":
             with open('roles_message_id.txt', 'w') as f:
                 f.write(str(await on_message_mod.roles(message)))
+                
             with open('roles_message_id.txt', 'r') as f:
                 self.roles_message_id = int(f.read())
                 
